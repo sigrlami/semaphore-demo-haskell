@@ -52,10 +52,10 @@ blocks:
           commands:
             - checkout
 
-       - name: Test app
-         commands:
-           - checkout
-           - stack test
+        - name: Test app
+          commands:
+            - checkout
+            - stack test
 
       epilogue:
          commands:
