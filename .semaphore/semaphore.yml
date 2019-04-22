@@ -48,12 +48,10 @@ blocks:
             - echo "Building executable"
             - stack build
 
-      jobs:
         - name: Cache deps
           commands:
             - checkout
 
-     jobs:
        - name: Test app
          commands:
            - checkout
