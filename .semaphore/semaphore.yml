@@ -44,10 +44,11 @@ blocks:
           # job is to work with your code.
           - checkout
       jobs:
-         commands:
-          - checkout
-          - echo "Building executable"
-          - stack build
+        - name: Building job
+          commands:
+            - checkout
+            - echo "Building executable"
+            - stack build
 
       epilogue:
          commands:
