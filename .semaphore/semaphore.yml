@@ -27,8 +27,8 @@ blocks:
         # Define an environment variable
         # Needed for use in scripts/test-sbt and scripts/test-gradle
         # - https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
-        # - name: GHC_VERSION
-        #  value: "8.4.2"
+        - name: GHC_VERSION
+          value: "8.4.2"
         # Commands in prologue run at the beginning of each parallel job.
         # - https://docs.semaphoreci.com/article/50-pipeline-yaml
       prologue:
