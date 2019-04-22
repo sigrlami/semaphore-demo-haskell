@@ -35,8 +35,8 @@ blocks:
         commands:
           - cd $HOME
           - ls -lah
-          - curl -sSL https://get.haskellstack.org/ | sh
-
+          # ubuntu provides default packages but it's a bit outdated, upgrade it
+          - stack upgrade --binary-only
 
           # Checkout code from Git repository. This step is mandatory if the
           # job is to work with your code.
