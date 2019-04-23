@@ -45,9 +45,9 @@ blocks:
         commands:
           - checkout
           - echo "Building executable"
-          - cache restore .stack-work
+          - cache restore stack-work-$SEMAPHORE_GIT_BRANCH .stack-work
           - stack build
-          - cache store .stack-work
+          - cache store stack-work-$SEMAPHORE_GIT_BRANCH
 
       - name: Checking cached deps
         commands:
@@ -56,7 +56,7 @@ blocks:
       - name: Test app
         commands:
           - checkout
-          - cache restore .stack-work
+          - cache restore gems-$SEMAPHORE_GIT_BRANCH
           - stack test
 
       epilogue:
