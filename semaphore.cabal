@@ -3,10 +3,28 @@ version:       0.0.0
 cabal-version: >= 1.8
 build-type:    Simple
 
-executable          semaphore
-    hs-source-dirs: src
-    main-is:        Main.hs
-    ghc-options:    -Wall -threaded -O2 -rtsopts -with-rtsopts=-N
-    extensions:     OverloadedStrings
-    build-depends:  base   >= 4      && < 5
-                  , scotty
+library
+  hs-source-dirs:      src
+  exposed-modules:     Lib
+  build-depends:       base >= 4.11 && < 5
+  default-language:    Haskell2010
+
+executable semaphore-web
+  main-is:              Main.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:        base >= 4.11 && <5
+                      , semaphore
+                      , scotty
+  hs-source-dirs:       app
+  default-language:     Haskell2010
+
+test-suite semaphore-tests
+  type:                 exitcode-stdio-1.0
+  build-depends:        base >= 4.11 && <5
+                      , semaphore
+                      , tasty
+                      , tasty-hunit
+  hs-source-dirs:       test
+  default-language:     Haskell2010
+  main-is:              Test.hs
