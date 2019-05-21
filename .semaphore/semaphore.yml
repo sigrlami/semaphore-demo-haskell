@@ -18,9 +18,9 @@ blocks:
         commands:
           - cd $HOME
           - ls -lah
-          - stack upgrade --binary-only
           # Checkout code from Git repository.
           - checkout
+          - stack build --install-ghc --only-dependencies
       jobs:
       - name: Build app and Cache
         commands:
