@@ -20,6 +20,7 @@ blocks:
           - ls -lah
           # Checkout code from Git repository.
           - checkout
+          # Use stack to determine proper GHC instead of system wide setup
           - stack build --install-ghc --only-dependencies
       jobs:
       - name: Build app and Cache
