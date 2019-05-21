@@ -1,44 +1,25 @@
-# .semaphore/semaphore.yml
-# Use the latest stable version of Semaphore 2.0 YML syntax:
 version: v1.0
 
-# Name of your pipeline. In this example we connect two pipelines with
-# a promotion, so it helps to differentiate what's the job of each.
 name: Semaphore example for Haskell and Scotty
 
-# An agent defines the environment in which your code runs.
-# It is a combination of one of available machine types and operating
-# system images. See:
-# - https://docs.semaphoreci.com/article/20-machine-types
-# - https://docs.semaphoreci.com/article/32-ubuntu-1804-image
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 
-# Blocks define the structure of a pipeline and are executed sequentially.
-# Each block has a task that defines one or many parallel jobs. Jobs define
-# the commands to execute.
-# - https://docs.semaphoreci.com/article/62-concepts
+  containers:
+    - name: main
+      image: semaphoreci/haskell:8.6.3  # specify Docker imager with proper compiler
+
 blocks:
   - name: "Haskell with Scotty"
     task:
-      env_vars:
-        # Define an environment variable
-        # Needed for use in scripts/test-sbt and scripts/test-gradle
-        # - https://docs.semaphoreci.com/article/66-environment-variables-and-secrets
-        - name: GHC_VERSION
-          value: "8.4.2"
-        # Commands in prologue run at the beginning of each parallel job.
-        # - https://docs.semaphoreci.com/article/50-pipeline-yaml
       prologue:
         commands:
           - cd $HOME
           - ls -lah
-          # ubuntu provides default packages but it's a bit outdated, upgrade it
           - stack upgrade --binary-only
-          # Checkout code from Git repository. This step is mandatory if the
-          # job is to work with your code.
+          # Checkout code from Git repository.
           - checkout
       jobs:
       - name: Build app and Cache
