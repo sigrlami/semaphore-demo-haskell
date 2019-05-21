@@ -24,10 +24,11 @@ blocks:
       jobs:
       - name: Build app and Cache
         commands:
+          - cd $HOME
           - checkout
           - echo "Building executable"
           - cache restore stack-work-$SEMAPHORE_GIT_BRANCH .stack-work
-          - stack build
+          - stack build --system-ghc
           - cache store stack-work-$SEMAPHORE_GIT_BRANCH
 
       - name: Checking cached deps
